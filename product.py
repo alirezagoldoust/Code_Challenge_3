@@ -38,6 +38,11 @@ class ProductManagement:
     def get_product_list(self):
         return self.product_list
     
+    def search_by_name(self,search_name):
+        for item in self.get_product_list:
+            if item["name"] == search_name:
+                return item
+            
 class Product:
     id = 0
     def __init__(self, name, category, price, seller):
