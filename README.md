@@ -17,7 +17,5 @@ A **Python-based e-commerce system** inspired by platforms like **Digikala**. Th
 - Customer reviews & ratings  
 
 ## 📜 License  
-Licensed under the **MIT License**.  
-
-💻 Built with **Python & OOP** – Inspired by real-world e-commerce platforms. 🚀  
+Licensed under the **KELAASOR License**.  
 
