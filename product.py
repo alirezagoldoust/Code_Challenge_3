@@ -11,7 +11,7 @@ class ProductManagement:
             with open(products_data,"r") as f:
                 self.product_list = json.load(f)
         for i in range(len(self.product_list)):
-            if self.product_list[i]["type"] == "digital":
+            if self.product_list[i]["type"] == "physical":
                 self.product_list[i] = PhysicalProduct(
                     self.product_list[i]["name"],
                     self.product_list[i]["category"],
@@ -20,11 +20,12 @@ class ProductManagement:
                     self.product_list[i]["weight"],
                     self.product_list[i]["seller"],
                 )
-            elif self.product_list[i]["type"] == "physical":
-                self.product_list[i] = PhysicalProduct(
+            elif self.product_list[i]["type"] == "digital":
+                self.product_list[i] = DigitalProduct(
                     self.product_list[i]["name"],
                     self.product_list[i]["category"],
                     self.product_list[i]["price"],
+                    self.product_list[i]["download_link"],
                     self.product_list[i]["seller"],
                 )
                 
@@ -33,6 +34,10 @@ class ProductManagement:
         list_of_product_dicts = [p.to_dict() for p in self.product_list]
         with open(products_data, "w") as f:
             json.dump(list_of_product_dicts, f, indent=4)
+            
+    def get_product_list(self):
+        return self.product_list
+    
 class Product:
     id = 0
     def __init__(self, name, category, price, seller):
