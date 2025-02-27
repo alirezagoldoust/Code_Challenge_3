@@ -7,7 +7,6 @@ A **Python-based e-commerce system** inspired by platforms like **Digikala**. Th
 - **Product Management:** Physical & digital products with seller association.  
 - **Order Processing:** Customers can place orders and complete payments.  
 - **Payment Methods:** Supports credit card & PayPal transactions.  
-- **VIP Customers:** Special users with exclusive discounts.  
 
 ## 🏗️ Technologies  
 - **Python** (OOP principles: inheritance, encapsulation, and polymorphism)  
@@ -18,7 +17,5 @@ A **Python-based e-commerce system** inspired by platforms like **Digikala**. Th
 - Customer reviews & ratings  
 
 ## 📜 License  
-Licensed under the **MIT License**.  
-
-💻 Built with **Python & OOP** – Inspired by real-world e-commerce platforms. 🚀  
+Licensed under the **KELAASOR License**.  
 
