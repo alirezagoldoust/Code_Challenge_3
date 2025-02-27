@@ -1,4 +1,6 @@
 import hashlib
+from product import ProductManagement
+from users import Seller
 class Account_manger:
     def __init__(self):
         self._list_of_seller = []
@@ -34,6 +36,13 @@ class Menu_list :
 
         self.__active_user =  None
     
+    def _list_of_product(self):
+        product_list = ProductManagement.get_product_list()
+        counter = 1
+        for product in product_list:
+            print(f"{counter}: {product}")
+            counter += 1
+    
     def menu(self):
         while self.__active_user == None:
             print("1.login")
@@ -53,39 +62,43 @@ class Menu_list :
                 user = self.account_manager.signup(user_name, pass_word)
                 if user != None:
                     self.__active_user = user
-        if self.__active_user != None and self.__active_user._role == "seller":
+        if self.__active_user != None and self.__active_user._role == "customer":
+            print("1. list of product")
+            print("2. search your product")
+            print("3. buy your product")
+            print("4. list of orders")
+            choice = int(input())
+
+            if choice == 1:
+                self._list_of_product()
+                
+            elif choice == 2 :
+                self.add_to_order_list()
+
+            elif choice == 3:
+                self.add_to_order_list()
+
+            elif choice == 4:  
+                pass
+                
+
+        elif self.__active_user != None and self.__active_user._role == "seller":
             print("1.list of product")
             print("2.add product")
             print("3.list of orders")
             print("4.list of costumers")
             choice = int(input())
             if choice == 1:
-                self.connection_manager.add_connection(self.__active_user.get_username(), followed_username)
-                
-            if choice == 2 :
-                follower = self.connection_manager.check_follower(self.__active_user.get_username())
-                for i, user in enumerate(follower):
-                    print(f"{i}. {user}")
+                s_products = Seller.product_for_sell()
+                counter = 1
+                for product in s_products:
+                    print(f"{counter}: {product}")
+                    counter += 1
+            elif choice == 2:
 
-            if choice == 3:
-                follwing = self.connection_manager.check_followed(self.__active_user.get_username())
-                for i, user in enumerate(follwing):
-                    print(f"{i}. {user}")
-
-            if choice == 4:  
-                follwing = self.connection_manager.get_mutual_connection(self.__active_user.get_username())
-                for i, user in enumerate(follwing):
-                    print(f"{i}. {user}")
-                username_message = input("who you want to send the message? ") 
-                mess = input("write your message")
-                self.message_manager.add_message(self.__active_user.get_username(), username_message, mess)
-
-            if choice == 5 :
-                list_messages = self.message_manager.check_messages(self.__active_user.get_username())
-                for mess in list_messages :
-                    mess: Message
-                    print(f"{mess.get_sender()}->{mess.get_message()}")
             
+
+                     
 
     def login(self):
         username = input()
@@ -93,16 +106,6 @@ class Menu_list :
         self.__active_user = self.account_manager.login(username, password)
         if not self.__active_user:
             print("wrong username")
-
-
-
-
-
-
-
-
-
-
 
 
 class User:
@@ -135,9 +138,6 @@ class User:
     
     def set_role(self,role: str):
         self._role = role
-
-
-
 
 
 class Customer:
@@ -179,3 +179,4 @@ class Seller():
 
     def add_product(self, product):
         self._list_of_product.append(product)
+        Account_manger.self._list_of_product.append(product)
